@@ -82,7 +82,7 @@ SELECT
 FROM all_sessions
 
 
---3. find the total number of unique visitors by referring sites
+--3. find the total number of unique visitors by referring channel
 -- Solution 01 - Understanding that referring sites are channels
 SELECT 
 	channelgrouping AS referring_sites,

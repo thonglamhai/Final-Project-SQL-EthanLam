@@ -87,3 +87,18 @@ CREATE TABLE analytics (
 	unit_price INT
 );
 
+
+ALTER TABLE products ADD PRIMARY KEY (sku);
+ALTER TABLE sales_report ADD PRIMARY KEY (productsku);
+ALTER TABLE sales_report 
+    ADD CONSTRAINT fk_sku FOREIGN KEY (productsku) REFERENCES products (sku);
+ALTER TABLE sales_by_sku ADD PRIMARY KEY (productsku);
+ALTER TABLE sales_by_sku 
+    ADD CONSTRAINT fk_sku FOREIGN KEY (productsku) REFERENCES products (sku);
+ALTER TABLE all_sessions ADD PRIMARY KEY (fullvisitorid, visitid, productsku, "time", "date");
+
+ALTER TABLE all_sessions 
+    ADD CONSTRAINT fk_sku FOREIGN KEY (productsku) REFERENCES products (sku);
+
+ALTER TABLE analytics 
+    ADD CONSTRAINT fk_fullvisitorid FOREIGN KEY (fullvisitorid) REFERENCES all_sessions (fullvisitorid);

@@ -31,3 +31,21 @@ SELECT *
 from all_sessions 
 where totaltransactionrevenue != (productquantity * productprice)
 ```
+```
+SELECT 
+count(DISTINCT als.productsku) as total
+FROM all_sessions als 
+JOIN products p ON als.productsku = p.sku
+
+SELECT 
+count(DISTINCT als.productsku) as total
+FROM all_sessions als 
+
+SELECT DISTINCT
+	productsku
+FROM all_sessions als 
+WHERE productsku NOT IN (
+	SELECT sku
+	FROM products
+)
+```

@@ -36,3 +36,29 @@ SELECT *
 from all_sessions 
 where totaltransactionrevenue != (productquantity * productprice)
 LIMIT 100
+
+SELECT 
+count(DISTINCT als.productsku) as total
+FROM all_sessions als 
+JOIN products p ON als.productsku = p.sku
+
+SELECT count(*)
+FROM products
+
+SELECT 
+count(DISTINCT als.productsku) as total
+FROM all_sessions als 
+
+SELECT DISTINCT
+	productsku
+FROM all_sessions als 
+WHERE productsku NOT IN (
+	SELECT sku
+	FROM products
+)
+
+DELETE FROM all_sessions
+WHERE productsku NOT IN (
+	SELECT sku
+	FROM products
+)

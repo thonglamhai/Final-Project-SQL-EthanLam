@@ -1,6 +1,3 @@
-SELECT * FROM all_sessions
-LIMIT 100;
-
 -- Cleaning data for all_lessions table
 -- Convert fullVisitorId to TEXT and ADD '0' character to unify the value as 19 character length
 -- SELECT 
@@ -177,9 +174,7 @@ LIMIT 100;
 -- WHERE renenue IS NOT NULL ;
 
 -- update 
-ALTER TABLE analytics
-	DROP COLUMN clean_timestamp;
-	
+
 ALTER TABLE analytics
 	ADD clean_visitStartTime timestamp;
 UPDATE analytics

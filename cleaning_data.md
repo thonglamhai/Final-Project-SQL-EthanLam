@@ -1,23 +1,36 @@
 What issues will you address by cleaning the data?
+- irrelevant data
+  - the userid in the analytics
+- The missing data such as
+  - the country and city is "(not set)" or "not available in the demo dataset"
+  - 
+- Inappropriate data types
+- 
 
 
-The SKU values are not consistent 
 
 # Step 1: Remove irrelevant data
+
 # Step 2: Remove duplicates
 # Step 3: Fix structural errors
 # Step 4: Convert types
-    analytics: visitstarttime -> change to timestamp format
-    ratio: the inconsistency of the data -> change to numeric format
-    analytics: unitprice = 0 -> null
-    all_sessions: time -> timestamp
-    all_sessions: city -> country if not specified
-    all_sessions: productprice 0 --> null
-    all_sessions: productvariant: not set -> null
-    all_sessions: currencycode -> usd
-# Step 5: Handle missing data
+There are some inappropriate data types
+- all_sessions
+    - totaltransactionrevenue: integer to float
+-  analytics
+    - visitstarttime: integer to timestamp
+    - revenue: integer to float
+    - unitprice: integer to float
+- products
+    - restockingleadtime: integer to interval
+- sales_report
+    - restockingleadtime: integer to interval
+ # Step 5: Handle missing data
     Removing data
+        - Removing data if there are missing country and city in all_sessions
+```all_sessions```
     Replacing data
+
 # Step 6: Deal with Outliers
 # Step 7: Standardize/Normalize data
 # Step 8: Validate data

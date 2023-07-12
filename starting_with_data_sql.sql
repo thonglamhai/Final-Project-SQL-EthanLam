@@ -8,27 +8,78 @@
 
 
 --1.find all duplicate records
-SELECT fullvisitorID, COUNT(fullvisitorID)
-FROM all_sessions
-GROUP BY (fullvisitorID)
-HAVING COUNT(fullvisitorID) > 1;
+SELECT 
+	fullvisitorID,
+	visitid,
+	productsku,
+	date,
+	time,
+	COUNT(*)
+FROM 
+	all_sessions
+GROUP BY
+	fullvisitorID,
+	visitid,
+	productsku,
+	date,
+	time
+HAVING
+	COUNT(*) > 1;
 
 
-SELECT visitid, clean_visitstarttime, fullvisitorid, COUNT(*)
-FROM analytics
-GROUP BY visitid, clean_visitstarttime, fullvisitorid
-HAVING COUNT(*) > 1
+SELECT
+	fullvisitorid,
+	visitid,
+	visitstarttime,
+	date,
+	COUNT(*)
+FROM
+	analytics
+GROUP BY
+	fullvisitorid,
+	visitid,
+	visitstarttime,
+	date
+HAVING
+	COUNT(*) > 1
 
+SELECT
+	sku,
+	COUNT(*)
+FROM
+	products
+GROUP BY
+	sku
+HAVING
+	COUNT(*) > 1
+	
+
+SELECT
+	productsku,
+	COUNT(*)
+FROM
+	sales_by_sku
+GROUP BY
+	productsku
+HAVING
+	COUNT(*) > 1
+
+
+SELECT
+	productsku,
+	COUNT(*)
+FROM
+	sales_report
+GROUP BY
+	productsku
+HAVING
+	COUNT(*) > 1
 
 --2.find the total number of unique visitors (`fullVisitorID`)
-With cte AS (
-	SELECT DISTINCT(fullvisitorid)
-	FROM all_sessions
-)
-SELECT
-	COUNT (*) AS total_unique_visitors
-FROM
-	cte;
+
+SELECT 
+	COUNT(DISTINCT(fullvisitorid)) AS total_unique_visitors
+FROM all_sessions
 
 
 --3. find the total number of unique visitors by referring sites
@@ -56,36 +107,25 @@ FROM refering_sites;
 --4. find each unique product viewed by each visitor
 
 SELECT 
-	a.fullvisitorid
-	productsku,
-	v2productname,
-	pagetitle,
-	fullvisitorid
+	productsku OVER (PARTITION BY fullvisitorid)
 FROM
 	all_sessions
-WHERE
-	pageviews != 0;
-	
+GROUP BY productsku, fullvisitorid
+ORDER BY productsku, fullvisitorid;
+
+SELECT * FROM analytics LIMIT 10;
 -- - compute the percentage of visitors to the site that actually makes a purchase
 
 
-With cte AS (
-	SELECT DISTINCT(fullvisitorid)
-	FROM all_sessions
-)
-SELECT
-	COUNT (*) AS total_unique_visitors
-FROM
-	cte;
-	
-with cte2 AS (
-	SELECT DISTINCT(fullvisitorid)
-	FROM all_sessions
-	WHERE transactions != 0
-)
 SELECT 
-	COUNT (*) AS total_visitor_purchased
-FROM cte2
+	COUNT(DISTINCT(fullvisitorID)) 
+FROM all_sessions
+WHERE
+	transactions > 0
 
-SELECT total_visitor_purchased / total_unique_visitor
-FROM cte1, cte2
+SELECT 
+	COUNT(DISTINCT(fullvisitorID)) 
+FROM all_sessions
+
+
+

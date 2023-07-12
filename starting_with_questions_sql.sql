@@ -2,28 +2,13 @@
 SELECT
 	country,
 	clean_city,
-	SUM(totaltransactionrevenue) as revenue
+	RANK() OVER (
+		ORDER BY SUM(totaltransactionrevenue) DESC
+	) revenue_rank
 FROM
 	all_sessions
 GROUP BY country, clean_city
-ORDER BY revenue DESC
-LIMIT 10;
 
--- SELECT
--- 	city,
--- 	SUM(totaltransactionrevenue) as city_revenue
--- FROM
--- 	all_sessions
--- GROUP BY city
--- ORDER BY city_revenue DESC;	
-
--- SELECT
--- 	country,
--- 	city,
--- 	totaltransactionrevenue,
---  	RANK() OVER(PARTITION BY country ORDER BY totaltransactionrevenue DESC) RevenueRank
--- FROM all_sessions
--- ORDER BY country, RevenueRank;
 
 --**Question 2: What is the average number of products ordered from visitors in each city and country
 SELECT 
@@ -34,7 +19,7 @@ FROM all_sessions a
 JOIN products p ON a.productsku = p.sku 
 --WHERE a.transactions != 0 AND p.orderedquantity != 0
 WHERE p.orderedquantity != 0
-GROUP BY a.country, a.clean_city
+GROUP BY a.country, a.clean_city, p.orderedquantity
 ORDER BY a.country, a.clean_city;
 
 	
@@ -101,6 +86,3 @@ JOIN products p ON a.productsku = p.sku
 WHERE a.transactions != 0 AND p.orderedquantity != 0
 GROUP BY a.country, a.clean_city, p.clean_restockingleadtime
 ORDER BY a.country, a.clean_city;
-
-SELECT *
-FROM all_sessions;

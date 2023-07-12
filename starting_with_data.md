@@ -1,8 +1,9 @@
-Question 1: 
+#### Question 1: Is it able to find all duplicate records in the tables `all_sessions`, `analytics`, `products`, `sales_report`, and `sales_by_sku`?
 
-SQL Queries:
+SQL Queries: 
+
+`all_sessions`
 ```
---1.find all duplicate records
 SELECT 
 	fullvisitorID,
 	visitid,
@@ -20,8 +21,10 @@ GROUP BY
 	time
 HAVING
 	COUNT(*) > 1;
+```
 
-
+`analytics`
+```
 SELECT
 	fullvisitorid,
 	visitid,
@@ -37,7 +40,10 @@ GROUP BY
 	date
 HAVING
 	COUNT(*) > 1
+```
 
+`products`
+```
 SELECT
 	sku,
 	COUNT(*)
@@ -47,8 +53,9 @@ GROUP BY
 	sku
 HAVING
 	COUNT(*) > 1
-	
-
+```
+`sales_by_sku`
+```
 SELECT
 	productsku,
 	COUNT(*)
@@ -58,8 +65,9 @@ GROUP BY
 	productsku
 HAVING
 	COUNT(*) > 1
-
-
+```
+`sales_report`
+```
 SELECT
 	productsku,
 	COUNT(*)
@@ -68,13 +76,12 @@ FROM
 GROUP BY
 	productsku
 HAVING
-	COUNT(*) > 1```
+	COUNT(*) > 1
+```
 Answer: No duplicated recorded in products, sales_by_sku and sales_report, all_session
 There are duplicated records in analytics.
 
-
-
-Question 2: 
+#### Question 2: How many unique visitors (`fullVisitorID`)
 
 SQL Queries:
 ```
@@ -87,7 +94,7 @@ Answer: 13851
 
 
 
-Question 3: 
+#### Question 3: What is the most referring channels
 
 SQL Queries:
 ```
@@ -98,26 +105,11 @@ FROM analytics
 GROUP BY (channelgrouping);
 ```
 
-Answer:
-(Other)	2
-Affiliates	1469
-Direct	21340
-Display	844
-Organic Search	66333
-Paid Search	3762
-Referral	18382
-Social	11023
-```
-
-Question 4: 
-
-SQL Queries:
-
-Answer:
+Answer: the Organic Search is the channel that attracted the most customers to the website.
 
 
 
-Question 5: 
+#### Question 4: What is the percentage of visitors to the site that actually makes a purchase
 
 SQL Queries:
 ```
@@ -133,3 +125,17 @@ FROM all_sessions
 ```
 
 Answer: 80/13581
+
+#### Question 5: What are the most favorite pages?
+
+SQL Queries:
+```
+SELECT
+	pagetitle,
+	SUM(pageviews) AS total_pageviews
+FROM all_sessions
+GROUP BY pagetitle
+ORDER BY total_pageviews DESC;
+```
+Answer: The most favorite page is `YouTube | Shop by Brand | Google Merchandise Store` with 5064 views in total.
+

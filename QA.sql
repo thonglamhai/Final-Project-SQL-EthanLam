@@ -15,13 +15,11 @@ ALTER TABLE sales_by_sku
     ADD CONSTRAINT fk_sku FOREIGN KEY (productsku) REFERENCES products (sku);
     
     
-    
-SELECT *
-FROM sales_by_sku sbs 
-JOIN all_sessions a ON sbs.productsku = a.productsku 
-WHERE sbs.productsku = 'GGOEYAXR066128';
+SELECT count(DISTINCT sku) FROM (
+	SELECT p.sku
+	FROM products p 
+	JOIN sales_by_sku sbs
+	ON p.sku = sbs.productsku
+)tmp
 
-SELECT *
-FROM sales_by_sku sbs 
-JOIN sales_report sr ON sbs.productsku = sr.productsku 
-WHERE sbs.productsku = 'GGOEYAXR066128';
+SELECT COUNT(productsku) FROM sales_by_sku

@@ -23,3 +23,16 @@ SELECT count(DISTINCT sku) FROM (
 )tmp
 
 SELECT COUNT(productsku) FROM sales_by_sku
+
+SELECT count(*)
+FROM all_sessions 
+WHERE fullvisitorid is NULL OR country IS NULL OR city is NULL OR productsku IS NULL
+
+SELECT COUNT(*)
+FROM all_sessions
+WHERE totaltransactionrevenue != 
+
+SELECT * 
+from all_sessions 
+where totaltransactionrevenue != (productquantity * productprice)
+LIMIT 100

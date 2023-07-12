@@ -107,9 +107,11 @@ FROM refering_sites;
 --4. find each unique product viewed by each visitor
 
 SELECT 
-	productsku OVER (PARTITION BY fullvisitorid)
+	DISTINCT(fullvisitorid),
+	productsku
 FROM
 	all_sessions
+WHERE pageviews != 0
 GROUP BY productsku, fullvisitorid
 ORDER BY productsku, fullvisitorid;
 

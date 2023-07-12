@@ -10,13 +10,60 @@ Developing and implementing a QA process to validate transformed data against ra
 
 ## Process
 ### 1. Importing data from CSV files
-Below are steps have been taken to import
+Below are steps have been taken to import.
 - Creating database named `ecommerce` in the database system.
 - Create tables in the `ecommerce` database. The tables `all_sessions`, `analytics`, `products`, `sales_by_sku`, and `sales_report`
 - Go to pgAdmin and import the csv files
 ### 2. Cleaning data in database
+Looking for Irrelevant data, Incorrect data, Inappropriate data types, and Missing data. For example,
 
+Irrelevant data: 
+- userid
+
+Incorrect data:
+- productsku
+- productprice
+
+Inappropriate data types:~~~~
+- all_sessions
+    - totaltransactionrevenue: integer to float
+-  analytics
+    - visitstarttime: integer to timestamp
+    - revenue: integer to float
+    - unitprice: integer to float
+- products
+    - restockingleadtime: integer to interval
+- sales_report
+    - restockingleadtime: integer to interval
+
+Missing data:
+- country
+- city
+- v2productcategory
+- productvariant
+- currencycode
+- revenue
+
+Prefer to the file `cleaning-data.md` for more information about the actions/queries.
 ### 3. Working on the assignment questions.
+Answer the questions in the assignment using queries. Prefer to the file `starting_with_questions.md`
+
+### 4. QA the data
+QA the data to ensure the correctness of the data. Prefer to the file `QA.md`
+
+### 5 Working on some more questions.
+I have created some more questions about data and tried to answer them. Prefer to the file `starting_with_data.md`
+### 6. Update the primary key and foreign key
+After cleaning the data and make sure that the data is good to go. I have altered the primary key and foreign key of the tables to show the relationship between them. Examples: 
+```
+ALTER TABLE products ADD PRIMARY KEY (sku);
+ALTER TABLE sales_report ADD PRIMARY KEY (productsku);
+ALTER TABLE sales_report 
+    ADD CONSTRAINT fk_sku FOREIGN KEY (productsku) REFERENCES products (sku);
+```
+I have added this part in the file `create-ecommerce-table`
+### 7. Generate the schema
+Using pgAdmin to generate the schema
 ## Results
 (fill in what you discovered this data could tell you and how you used the data to answer those questions)
 The data is about an ecommerce website's data. the typical scenario is a user comes to the website, searching for the products which they are interested in to review and do buy (transaction).

@@ -77,70 +77,7 @@ GROUP BY a.country, a.clean_city, a.v2productcategory
 ORDER BY a.v2productcategory
 ```
 
-Answer: 
-country	        clean_city	v2productcategory
-United States	Austin	        Apparel
-United States	Mountain View	Apparel
-United States	San Jose	    Apparel
-United States	United States	Apparel
-United States	United States	Electronics
-United States	San Francisco	Home/Accessories/Drinkware/
-United States	San Francisco	Home/Accessories/Fun/
-United States	United States	Home/Accessories/Pet/
-United States	United States	Home/Apparel/
-United States	Mountain View	Home/Apparel/Kid's/Kid's-Infant/
-United States	New York	    Home/Apparel/Kid's/Kid's-Infant/
-United States	United States	Home/Apparel/Kid's/Kid's-Infant/
-United States	San Bruno	    Home/Apparel/Men's/
-United States	New York	    Home/Apparel/Men's/Men's-Outerwear/
-United States	San Francisco	Home/Apparel/Men's/Men's-Outerwear/
-United States	New York	    Home/Apparel/Men's/Men's-Performance Wear/
-United States	Atlanta	        Home/Apparel/Men's/Men's-T-Shirts/
-United States	New York	    Home/Apparel/Men's/Men's-T-Shirts/
-United States	Sunnyvale	    Home/Apparel/Men's/Men's-T-Shirts/
-United States	United States	Home/Apparel/Men's/Men's-T-Shirts/
-United States	Los Angeles	    Home/Apparel/Women's/
-United States	Mountain View	Home/Apparel/Women's/Women's-Outerwear/
-United States	San Francisco	Home/Apparel/Women's/Women's-T-Shirts/
-United States	United States	Home/Apparel/Women's/Women's-T-Shirts/
-United States	San Francisco	Home/Bags/
-United States	United States	Home/Bags/
-United States	Houston	        Home/Drinkware/
-United States	United States	Home/Drinkware/
-United States	San Francisco	Home/Drinkware/Water Bottles and Tumblers/
-United States	Los Angeles	    Home/Nest/Nest-USA/
-United States	New York	    Home/Nest/Nest-USA/
-United States	Palo Alto	    Home/Nest/Nest-USA/
-United States	San Francisco	Home/Nest/Nest-USA/
-United States	San Jose	    Home/Nest/Nest-USA/
-United States	Seattle	        Home/Nest/Nest-USA/
-United States	United States	Home/Nest/Nest-USA/
-United States	United States	Home/Office/Notebooks & Journals/
-United States	Chicago	        Home/Office/Writing Instruments/
-United States	New York	    Home/Shop by Brand/
-United States	San Francisco	Home/Shop by Brand/Android/
-United States	Austin	        Home/Shop by Brand/Google/
-United States	United States	Home/Shop by Brand/Google/
-United States	Sunnyvale	    Housewares
-United States	Chicago	        Lifestyle
-United States	United States	Lifestyle
-United States	Columbus	    N/A
-United States	New York	    N/A
-United States	San Francisco	N/A
-Australia	    Sydney	        Nest-USA
-United States	Chicago	        Nest-USA
-United States	Mountain View	Nest-USA
-United States	Nashville	    Nest-USA
-United States	Palo Alto	    Nest-USA
-United States	San Francisco	Nest-USA
-United States	Sunnyvale	    Nest-USA
-United States	United States	Nest-USA
-United States	Mountain View	Waze
-United States	United States	Waze
-
-
-
-
+Answer: Most of the users looking for the Apparel products
 
 **Question 4: What is the top-selling product from each city/country? Can we find any pattern worthy of noting in the products sold?**
 

@@ -48,18 +48,13 @@ CREATE TABLE products (
 	stockLevel INT,
 	restockingLeadTime INT,
 	sentimentScore FLOAT(1),
-	sentimentMagnitude FlOAT(1),
-	PRIMARY KEY (SKU)
+	sentimentMagnitude FlOAT(1)
 );
 
 
 CREATE TABLE sales_by_sku (
 	productSKU VARCHAR(20),
-	total_ordered INT,
-	PRIMARY KEY (productSKU),
-	CONSTRAINT fk_products
-		FOREIGN KEY (productSKU)
-			REFERENCES products(SKU)
+	total_ordered INT
 );
 
 
@@ -72,10 +67,6 @@ CREATE TABLE sales_report (
 	sentimentScore FLOAT(1),
 	sentimentMagnitude FlOAT(1),
 	ratio FLOAT
-	PRIMARY KEY (productSKU),
-	CONSTRAINT fk_products
-		FOREIGN KEY (productSKU)
-			REFERENCES products(SKU)
 );
 
 
@@ -94,9 +85,5 @@ CREATE TABLE analytics (
 	bounces INT,
 	revenue BIGINT,
 	unit_price INT
-	PRIMARY KEY (visitNumber),
-	CONSTRAINT fk_all_sessions
-		FOREIGN KEY (fullVisitorId)
-			REFERENCES products(fullVisitorId)
 );
 
